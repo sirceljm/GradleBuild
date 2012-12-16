@@ -18,7 +18,6 @@ class GradleBuildExecCommand(sublime_plugin.WindowCommand):
         
         package_dir = os.path.join(sublime.packages_path(), "GradleBuild");
         self.build = os.path.join(package_dir, 'build.gradle')
-        self.build_properties = os.path.join(package_dir, 'build.properties')
 
         path = None;
         if len(self.window.folders()) > 0:
