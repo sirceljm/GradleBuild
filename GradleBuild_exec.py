@@ -20,15 +20,8 @@ class GradleBuildExecCommand(sublime_plugin.WindowCommand):
         self.build = os.path.join(package_dir, 'build.gradle')
         self.build_properties = os.path.join(package_dir, 'build.properties')
 
-        path = None;
-        if len(self.window.folders()) > 0:
-            for folder in self.window.folders():
-                if os.path.exists(folder + os.sep + "build.gradle"):
-                    self.build = folder + os.sep + "build.gradle";
-                    self.folder = folder
-
         try:
-            f = open(self.build);
+            f = open(folder + os.sep + "build.gradle");
         except Exception as ex:
             print ex;
             return 'The file could not be opened'
