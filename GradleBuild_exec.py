@@ -65,7 +65,8 @@ class GradleBuildExecCommand(sublime_plugin.WindowCommand):
                         gradle = "gradle.bat";
 
                 # TODO this is only for windows
-                p = subprocess.Popen(["cmd", "/K", gradle, "-p", self.folder, "-q", taskName])
+                print self.folder
+                p = subprocess.Popen(["cmd", "/K", "cd", self.folder, "&&", gradle, "-q", taskName])
 
 
                 
