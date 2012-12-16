@@ -2,9 +2,6 @@ import sublime, sublime_plugin, sys, os
 import subprocess
 import re
 
-DEFAULT_BUILD_CMD = "exec"
-DEFAULT_BUILD_TASK = "build"
-
 def preparelist(l):
     new_list = []
     for x in l:
@@ -17,14 +14,12 @@ class GradleBuildExecCommand(sublime_plugin.WindowCommand):
     def run(self, **kwargs):
         
         package_dir = os.path.join(sublime.packages_path(), "GradleBuild");
-        self.build = os.path.join(package_dir, 'build.gradle')
-        self.build_properties = os.path.join(package_dir, 'build.properties')
 
         try:
             f = open(folder + os.sep + "build.gradle");
         except Exception as ex:
             print ex;
-            return 'The file could not be opened'
+            return 'File "build.gradle" could not be found'
     
         data = f.read();
         self.tasks = re.findall(r"task(.*?)\<\<", data, re.DOTALL|re.MULTILINE)
