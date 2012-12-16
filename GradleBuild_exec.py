@@ -12,6 +12,7 @@ def preparelist(l):
 
 class GradleBuildExecCommand(sublime_plugin.WindowCommand):
     def run(self, **kwargs):
+        self.folder = ""
         self.buildScript = ""
         
         number_of_folders_in_project = len(self.window.folders())
@@ -20,6 +21,7 @@ class GradleBuildExecCommand(sublime_plugin.WindowCommand):
         if len(self.window.folders()) > 0:
             for folder in self.window.folders():
                 if os.path.exists(folder + os.sep + "build.gradle"):
+                    self.folder = folder
                     self.buildScript = folder + os.sep + "build.gradle";
                     break
 
@@ -63,7 +65,7 @@ class GradleBuildExecCommand(sublime_plugin.WindowCommand):
                         gradle = "gradle.bat";
 
                 # TODO this is only for windows
-                p = subprocess.Popen(["cmd", "/K", gradle, "-q", taskName])
+                p = subprocess.Popen(["cmd", "/K", gradle, "-p", self.folder, "-q", taskName])
 
 
                 
