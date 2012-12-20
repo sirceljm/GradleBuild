@@ -66,7 +66,7 @@ class GradleBuildExecCommand(sublime_plugin.WindowCommand):
 
                 # TODO this is only for windows
                 print self.folder
-                p = subprocess.Popen(["cmd", "/K", "cd", self.folder, "&&", gradle, "--daemon", "-q", taskName])
+                p = subprocess.Popen(["cmd", "/K", "cd", self.folder, "&&", gradle, "--info", "-q", taskName])
 
 
                 
