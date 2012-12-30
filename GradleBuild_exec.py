@@ -60,13 +60,13 @@ class GradleBuildExecCommand(sublime_plugin.WindowCommand):
             if taskName[0] != "#":
             
                 gradle = "gradle";
-                # Check for Windows Overrides and Merge
+                
                 if sys.platform.startswith('win32'):
                         gradle = "gradle.bat";
 
                 # TODO this is only for windows
                 print self.folder
-                p = subprocess.Popen(["cmd", "/K", "cd", self.folder, "&&", gradle, "--info", "-q", taskName])
+                p = subprocess.Popen(["cmd", "/K", "cd", self.folder, "&&", gradle, "-q", taskName])
 
 
                 
